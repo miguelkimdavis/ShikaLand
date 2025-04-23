@@ -1,0 +1,93 @@
+<div class="container mt-4">
+  <h2>{{ editMode ? 'Edit Property' : 'Add New Property' }}</h2>
+  
+  <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="location">Location</label>
+          <select class="form-control" id="location" formControlName="location">
+            <option value="">Select Location</option>
+            <option *ngFor="let loc of locations" [value]="loc">{{ loc }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="plotSize">Plot Size</label>
+          <select class="form-control" id="plotSize" formControlName="plotSize">
+            <option value="">Select Plot Size</option>
+            <option *ngFor="let size of plotSizes" [value]="size">{{ size }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="price">Price (KSh)</label>
+          <input type="number" class="form-control" id="price" formControlName="price">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select class="form-control" id="status" formControlName="status">
+            <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="imageURLs">Image URL</label>
+          <input type="text" class="form-control" id="imageURLs" formControlName="imageURLs">
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group text-right">
+      <button type="button" class="btn btn-secondary mr-2" (click)="resetForm()" *ngIf="editMode">Cancel</button>
+      <button type="submit" class="btn btn-primary" [disabled]="propertyForm.invalid">
+        {{ editMode ? 'Update' : 'Save' }}
+      </button>
+    </div>
+  </form>
+
+  <hr>
+
+  <h2>Property List</h2>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Location</th>
+          <th>Plot Size</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let property of properties">
+          <td>{{ property.propertyID }}</td>
+          <td>{{ property.location }}</td>
+          <td>{{ property.plotSize }}</td>
+          <td>KSh {{ property.price | number }}</td>
+          <td>
+            <span [class.badge-success]="property.status === 'Available'" 
+                  [class.badge-danger]="property.status === 'Sold'"
+                  class="badge">
+              {{ property.status }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-info mr-2" (click)="onEdit(property)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="onDelete(property.propertyID)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

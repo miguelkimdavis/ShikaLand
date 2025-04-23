@@ -1,0 +1,22 @@
+<div class="container">
+    <form (ngSubmit)="bookTour()" class="tour-form fade-in">
+        <label>Select Property:</label>
+        <select [(ngModel)]="selectedPropertyId" name="property" class="form-input" required>
+          <option *ngFor="let prop of properties" [value]="prop.id">{{ prop.title }}</option>
+        </select>
+      
+        <label>Pick a Date:</label>
+        <input
+          type="date"
+          [(ngModel)]="tourDate"
+          name="date"
+          class="form-input"
+          [min]="minDate"
+          required
+        >
+      
+        <button type="submit" class="book-btn">Book Tour</button>
+      </form>      
+</div>
+
+  

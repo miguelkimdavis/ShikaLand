@@ -1,0 +1,45 @@
+<header class="main-header">
+    <div class="logo">
+        <a routerLink="/">
+            <img src="https://scontent.fnbo9-1.fna.fbcdn.net/v/t39.30808-6/469093192_122153314550344422_2463002906021188320_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=pf8C4Bu_HC8Q7kNvwF-JTPx&_nc_oc=AdmWH2G_rZfGNsap80Zh_8rUfwZmW307o_gTve8HlJ7C51IiLdB_W9jQF3Kx2IWRTUg&_nc_pt=5&_nc_zt=23&_nc_ht=scontent.fnbo9-1.fna&_nc_gid=bYWdgspUJCBeFowrbqOJpg&oh=00_AfFUvwpdx2rdoGqwJFzkQ_n7J1jiTFUos5947yXHQfSPYQ&oe=67FA0F76" alt="Shika Land">
+        </a>
+    </div>
+    <nav class="desktop-main-menu">
+        <ul>
+            <li>
+                <a *ngIf="isUser" routerLink="/user" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">HOME</a>
+            </li>
+            <li>
+                <a *ngIf="isUser" routerLink="/user/property" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">PROPERTY</a>
+            </li>
+            <li>
+                <a *ngIf="isUser" routerLink="/user/tour" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">TOUR</a>
+            </li>
+            <li>
+                <a *ngIf="isUser" routerLink="/user/contact" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">CONTACT</a>
+            </li>
+
+            <li *ngIf="isAdmin">
+                <a routerLink="/admin" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">ADMIN HOME</a>
+            </li>
+            <li *ngIf="isAdmin">
+                <a routerLink="/admin/property" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">ADMIN PROPERTY</a>
+            </li>
+            <li *ngIf="isAdmin">
+                <a routerLink="/admin/tour" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">ADMIN TOUR</a>
+            </li>
+            <li *ngIf="isAdmin">
+                <a routerLink="/admin/finance" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">ADMIN FINANCE</a>
+            </li>
+            <li *ngIf="isAdmin">
+                <a routerLink="/admin/contact" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">ADMIN CONTACT</a>
+            </li>
+
+            <li>
+                <div class="header-login">
+                    <a routerLink="/login" class="login-btn">LogIn</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>

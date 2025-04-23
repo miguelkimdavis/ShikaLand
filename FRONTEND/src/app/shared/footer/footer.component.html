@@ -1,0 +1,22 @@
+<footer>
+    <div class="footer-nav">
+        <a *ngIf="isUser" routerLink="/user" [routerLinkActive]="'active'">HOME</a>
+        <a *ngIf="isUser" routerLink="/user/property" [routerLinkActive]="'active'">PROPERTY</a>
+        <a *ngIf="isUser" routerLink="/user/tour" [routerLinkActive]="'active'">TOUR</a>
+        <a *ngIf="isUser" routerLink="/user/contact" [routerLinkActive]="'active'">CONTACT</a>
+
+        <a *ngIf="isAdmin" routerLink="/admin" [routerLinkActive]="'active'">ADMIN HOME</a>
+        <a *ngIf="isAdmin" routerLink="/admin/property" [routerLinkActive]="'active'">ADMIN PROPERTY</a>
+        <a *ngIf="isAdmin" routerLink="/admin/tour" [routerLinkActive]="'active'">ADMIN TOUR</a>
+        <a *ngIf="isAdmin" routerLink="/admin/finance" [routerLinkActive]="'active'">ADMIN FINANCE</a>
+        <a *ngIf="isAdmin" routerLink="/admin/contact" [routerLinkActive]="'active'">ADMIN CONTACT</a>
+    </div>
+
+    <div class="social-links">
+        <a href="mailto:shika@land.com"><i class="fa-solid fa-envelope"></i></a>
+        <a href="tel:0739602014"><i class="fa-sharp fa-solid fa-phone"></i></a>
+        <a href="https://instagram.com"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://x.com"><i class="fa-solid fa-x"></i></a>
+    </div>
+    <p>&copy; 2025 SHIKA LAND. All rights reserved.</p>
+</footer>
