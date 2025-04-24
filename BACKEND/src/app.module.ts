@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { PropertyModule } from './property/property.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Property } from './property/entity/property.entity';
+import { TourModule } from './tour/tour.module';
 
 @Module({
   imports: [
@@ -22,9 +23,9 @@ import { Property } from './property/entity/property.entity';
       entities: [
         Property,
       ],
-      // synchronize: true
     }),
-    PropertyModule
+    PropertyModule,
+    TourModule,
   ],
   controllers: [AppController],
   providers: [AppService],

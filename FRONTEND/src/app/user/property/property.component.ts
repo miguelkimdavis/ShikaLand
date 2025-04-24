@@ -21,7 +21,7 @@ export class PropertyComponent implements OnInit {
   selectedLocation: string = '';
   selectedStatus: string = 'Available';
 
-  locations = ['Ruiru', 'Joska', 'Kamulu'];
+  locations = ['Ruiru', 'Joska', 'Eastern Bypass'];
   statuses = ['Available', 'Sold'];
 
   constructor(private apiService: ApiService) { }

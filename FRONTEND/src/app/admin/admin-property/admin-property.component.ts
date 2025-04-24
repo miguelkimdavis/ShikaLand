@@ -21,7 +21,7 @@ export class AdminPropertyComponent implements OnInit {
   editMode = false;
   currentPropertyId!: number;
 
-  locations = ['Ruiru', 'Joska', 'Kamulu'];
+  locations = ['Ruiru', 'Joska', 'Eastern Bypass'];
   plotSizes = ['⅛ acre', '¼ acre', '½ acre', '1 acre'];
   statuses = ['Available', 'Sold'];
 

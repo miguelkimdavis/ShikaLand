@@ -4,29 +4,24 @@ import { HomeComponent } from './home/home.component';
 import { PropertyComponent } from './property/property.component';
 import { TourComponent } from './tour/tour.component';
 import { ContactComponent } from './contact/contact.component';
+import { UserLayoutComponent } from './user-layout/user-layout.component';
 
 const routes: Routes = [
   {
-    path:'',
-    component:HomeComponent
-  },
-  {
-    path:'property',
-    component:PropertyComponent
-  },
-  {
-    path:'tour',
-    component:TourComponent
-  },
-  {
-    path:'contact',
-    component:ContactComponent
+    path: '',
+    component: UserLayoutComponent,
+    children: [
+      { path: 'home', component: HomeComponent },
+      { path: 'property', component: PropertyComponent },
+      { path: 'tour', component: TourComponent },
+      { path: 'contact', component: ContactComponent },
+      { path: '', redirectTo: 'home', pathMatch: 'full' }
+    ]
   }
-
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UserRoutingModule { }
+export class UserRoutingModule {}
