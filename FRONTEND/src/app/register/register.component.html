@@ -1,0 +1,17 @@
+<div class="auth-container">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <h2>Register</h2>
+      <input formControlName="fullName" placeholder="Full Name" />
+      <input formControlName="phoneNumber" placeholder="Phone Number" />
+      <input formControlName="email" placeholder="Email" type="email" />
+      <input formControlName="password" placeholder="Password" type="password" />
+      <input formControlName="confirmPassword" placeholder="Confirm Password" type="password" />
+      <button type="submit">Register</button>
+  
+      <p class="switch-text">
+        Already have an account?
+        <a routerLink="/auth/login">Already Have an Account</a>
+      </p>
+    </form>
+  </div>
+  

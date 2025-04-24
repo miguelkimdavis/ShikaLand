@@ -6,6 +6,9 @@ import { PropertyModule } from './property/property.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Property } from './property/entity/property.entity';
 import { TourModule } from './tour/tour.module';
+import { AuthModule } from './auth/auth.module';
+import { Staff } from './auth/entity/staff.entity';
+import { Customer } from './auth/entity/customer.entity';
 
 @Module({
   imports: [
@@ -22,10 +25,14 @@ import { TourModule } from './tour/tour.module';
       database: process.env.DB_NAME,
       entities: [
         Property,
+        Customer,
+        Staff
       ],
+      synchronize: true,
     }),
     PropertyModule,
     TourModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
