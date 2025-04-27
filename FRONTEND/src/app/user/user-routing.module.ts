@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PropertyComponent } from './property/property.component';
-import { TourComponent } from './tour/tour.component';
 import { ContactComponent } from './contact/contact.component';
 import { UserLayoutComponent } from './user-layout/user-layout.component';
+import { BookTourComponent } from './book-tour/book-tour.component';
+import { PaymentComponent } from './payment/payment.component';
+import { TourComponent } from './tour/tour.component';
 
 const routes: Routes = [
   {
@@ -13,8 +15,10 @@ const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'property', component: PropertyComponent },
-      { path: 'tour', component: TourComponent },
       { path: 'contact', component: ContactComponent },
+      { path: 'book-tour/:id', component: BookTourComponent },
+      { path: 'tour', component:TourComponent},
+      { path: 'payment', component: PaymentComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ]
   }

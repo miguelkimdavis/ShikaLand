@@ -7,7 +7,7 @@ import { environment } from '../../../../environment/environment';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = environment.apiUrl; 
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -29,5 +29,17 @@ export class ApiService {
 
   deleteProperty(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/properties/${id}`);
+  }
+
+  bookTour(tourData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/book-tour`, tourData);
+  }
+
+  getToursByCustomer(customerID: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/book-tour/customer/${customerID}`);
+  }
+
+  updateTour(id: number, tourData: any): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/book-tour/${id}`, tourData);
   }
 }

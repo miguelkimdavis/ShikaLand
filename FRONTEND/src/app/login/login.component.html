@@ -1,14 +1,20 @@
 <div class="auth-container">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
-      <h2>Login</h2>
-      <input formControlName="email" placeholder="Email" type="email" />
-      <input formControlName="password" placeholder="Password" type="password" />
-      <button type="submit">Login</button>
-  
-      <p class="switch-text">
-        Don't have an account?
-        <a routerLink="/register">Create Account</a>
-      </p>
-    </form>
-  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+    <h2>Login</h2>
+
+    <div *ngIf="alertMessage" class="alert" [ngClass]="'alert-' + alertType" role="alert">
+      {{ alertMessage }}
+    </div>
+
+    <input formControlName="email" placeholder="Email" type="email" class="form-control mb-2" />
+    <input formControlName="password" placeholder="Password" type="password" class="form-control mb-2" />
+    <button type="submit" class="btn btn-primary w-100">Login</button>
+
+    <p class="switch-text mt-3">
+      Don't have an account?
+      <a routerLink="/register">Create Account</a>
+    </p>
+  </form>
+</div>
+
   

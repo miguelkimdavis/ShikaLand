@@ -1,45 +1,57 @@
 <div class="container mt-4">
   <h2>Available Properties</h2>
 
-  <div class="filter-bar mb-4">
+  <div class="filter-bar mb-4 d-flex flex-wrap gap-2">
     <input type="text" class="form-control me-2" placeholder="Search..." 
            [(ngModel)]="searchTerm" (input)="applyFilters()">
-  
+
     <select class="form-control me-2" [(ngModel)]="selectedLocation" (change)="applyFilters()">
       <option value="">All Locations</option>
       <option *ngFor="let loc of locations" [value]="loc">{{ loc }}</option>
     </select>
-  
+
     <select class="form-control me-2" [(ngModel)]="selectedStatus" (change)="applyFilters()">
       <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
     </select>
-  
+
     <button class="btn btn-outline-secondary" (click)="resetFilters()">Reset Filters</button>
   </div>
-  
+
   <div class="row">
     <div class="col-md-4 mb-4" *ngFor="let property of filteredProperties">
       <div class="card h-100">
         <img [src]="property.imageURLs" class="card-img-top" [alt]="property.location" style="height: 200px; object-fit: cover;">
         <div class="card-body">
-          <h2 class="card-title">{{ property.location }}</h2>
-          <h3 class="card-subtitle mb-2 text-muted">{{ property.plotSize }}</h3>
-          <h2 class="card-text">{{ property.description }}</h2>
+          <h4 class="card-title">{{ property.location }}</h4>
+          <p class="card-subtitle text-muted mb-1">{{ property.plotSize }}</p>
+          <p class="card-text">{{ property.description }}</p>
+
           <div class="d-flex justify-content-between align-items-center">
             <span class="h5">KSh {{ property.price | number }}</span>
-            <span [class.badge-success]="property.status === 'Available'" 
-                  [class.badge-danger]="property.status === 'Sold'"
-                  class="badge">
+            <span [class.bg-success]="property.status === 'Available'" 
+                  [class.bg-danger]="property.status === 'Sold'"
+                  class="badge text-white">
               {{ property.status }}
             </span>
           </div>
-          <br>
+
+          <div class="mt-3 d-flex justify-content-between">
+            <button class="btn btn-primary btn-sm" 
+                    (click)="bookTour(property)">
+              Book Tour
+            </button>
+
+            <button class="btn btn-success btn-sm" 
+                    (click)="makePayment(property)">
+              Make Payment
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div *ngIf="filteredProperties.length === 0" class="alert alert-info">
+  <div *ngIf="filteredProperties.length === 0" class="alert alert-info mt-4">
     No properties found matching your criteria.
   </div>
 </div>

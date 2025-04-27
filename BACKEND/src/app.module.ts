@@ -5,16 +5,17 @@ import { ConfigModule } from '@nestjs/config';
 import { PropertyModule } from './property/property.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Property } from './property/entity/property.entity';
-import { TourModule } from './tour/tour.module';
 import { AuthModule } from './auth/auth.module';
 import { Staff } from './auth/entity/staff.entity';
 import { Customer } from './auth/entity/customer.entity';
+import { BookTourModule } from './book-tour/book-tour.module';
+import { BookTour } from './book-tour/entity/book-tour.entity';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      expandVariables: true
+      expandVariables: true,
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -26,13 +27,13 @@ import { Customer } from './auth/entity/customer.entity';
       entities: [
         Property,
         Customer,
-        Staff
+        Staff,
+        BookTour,
       ],
-      synchronize: true,
     }),
     PropertyModule,
-    TourModule,
     AuthModule,
+    BookTourModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,17 +1,21 @@
 <div class="auth-container">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
-      <h2>Register</h2>
-      <input formControlName="fullName" placeholder="Full Name" />
-      <input formControlName="phoneNumber" placeholder="Phone Number" />
-      <input formControlName="email" placeholder="Email" type="email" />
-      <input formControlName="password" placeholder="Password" type="password" />
-      <input formControlName="confirmPassword" placeholder="Confirm Password" type="password" />
-      <button type="submit">Register</button>
-  
-      <p class="switch-text">
-        Already have an account?
-        <a routerLink="/auth/login">Already Have an Account</a>
-      </p>
-    </form>
-  </div>
-  
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+    <h2>Register</h2>
+
+    <div *ngIf="alertMessage" class="alert" [ngClass]="'alert-' + alertType" role="alert">
+      {{ alertMessage }}
+    </div>
+
+    <input formControlName="fullName" placeholder="Full Name" class="form-control mb-2" />
+    <input formControlName="phoneNumber" placeholder="Phone Number" class="form-control mb-2" />
+    <input formControlName="email" placeholder="Email" type="email" class="form-control mb-2" />
+    <input formControlName="password" placeholder="Password" type="password" class="form-control mb-2" />
+    <input formControlName="confirmPassword" placeholder="Confirm Password" type="password" class="form-control mb-2" />
+    <button type="submit" class="btn btn-primary w-100">Register</button>
+
+    <p class="switch-text mt-3">
+      Already have an account?
+      <a routerLink="/auth/login">Already Have an Account</a>
+    </p>
+  </form>
+</div>

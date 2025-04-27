@@ -1,8 +1,25 @@
+import { IsNotEmpty, IsString, IsEmail, IsStrongPassword } from "class-validator";
+
 export class RegisterStaffDto {
-    staffName: string;
-    phoneNumber: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-    role: string;
+  @IsNotEmpty()
+  @IsString()
+  staffName: string;
+
+  @IsNotEmpty()
+  @IsString()
+  phoneNumber: string;
+
+  @IsNotEmpty()
+  @IsEmail()
+  email: string;
+
+  @IsNotEmpty()
+  @IsStrongPassword()
+  password: string;
+
+  @IsNotEmpty()
+  confirmPassword: string;
+
+  @IsNotEmpty()
+  role: string;
 }

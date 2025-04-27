@@ -37,23 +37,33 @@ export class AuthService {
     return {
       access_token: this.jwtService.sign(payload),
       role,
+      userId: id, 
     };
   }
-
+  
   async registerCustomer(dto: RegisterCustomerDto) {
     const { fullName, phoneNumber, email, password, confirmPassword } = dto;
+  
+    const existingCustomer = await this.customerRepo.findOne({ where: [{ email }, { phoneNumber }] });
+    if (existingCustomer) throw new BadRequestException('Customer with this email or phone already exists');
+  
     if (password !== confirmPassword) throw new BadRequestException('Passwords do not match');
     const hash = await bcrypt.hash(password, 10);
     const newUser = this.customerRepo.create({ fullName, phoneNumber, email, passwordHash: hash });
     return this.customerRepo.save(newUser);
   }
-
+  
   async registerStaff(dto: RegisterStaffDto) {
     const { staffName, phoneNumber, email, password, confirmPassword, role } = dto;
+  
+    const existingStaff = await this.staffRepo.findOne({ where: [{ email }, { phoneNumber }] });
+    if (existingStaff) throw new BadRequestException('Staff with this email or phone already exists');
+  
     if (password !== confirmPassword) throw new BadRequestException('Passwords do not match');
     const hash = await bcrypt.hash(password, 10);
     const newStaff = this.staffRepo.create({ staffName, phoneNumber, email, passwordHash: hash, role });
     return this.staffRepo.save(newStaff);
   }
+  
 }
 
