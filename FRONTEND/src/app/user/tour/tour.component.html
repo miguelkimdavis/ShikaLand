@@ -1,21 +1,63 @@
-<div *ngIf="tours.length > 0">
-  <div *ngFor="let tour of tours">
-    <div>
-      <h3>{{ tour.property.location }} ({{ tour.property.price }})</h3>
-      <p>{{ tour.property.description }}</p>
-      <p>Date: {{ tour.tourDate }} | Time: {{ tour.tourTime }} | Status: {{ tour.status }}</p>
-      <button (click)="editTour(tour)">Edit</button>
-    </div>
+<div class="container mt-4">
+  <h2 class="mb-4">Your Booked Tours</h2>
+
+  <div *ngIf="alertMessage" class="alert" [ngClass]="{
+    'alert-success': alertType === 'success',
+    'alert-danger': alertType === 'danger'
+  }">
+    {{ alertMessage }}
   </div>
 
-  <div *ngIf="selectedTour">
-    <h3>Edit Tour</h3>
-    <label for="tourDate">Date:</label>
-    <input type="date" id="tourDate" [(ngModel)]="selectedDate" [min]="minDate" />
+  <div *ngIf="tours.length === 0">
+    <p>You have no booked tours. <a routerLink="/user/property">Book a tour</a> now!</p>
+  </div>
 
-    <label for="tourTime">Time:</label>
-    <input type="time" id="tourTime" [(ngModel)]="selectedTime" [min]="timeMin" [max]="timeMax" />
+  <div *ngIf="tours.length > 0">
+    <div *ngFor="let tour of tours" class="card mb-4">
+      <img [src]="tour.property.imageURLs" class="card-img-top" style="height: 250px; object-fit: cover;" />
+      <div class="card-body">
+        <h4 class="card-title">{{ tour.property.location }}</h4>
+        <p class="card-text"><strong>Plot Size:</strong> {{ tour.property.plotSize }}</p>
+        <p class="card-text"><strong>Price:</strong> KSh {{ tour.property.price | number }}</p>
+        <p class="card-text"><strong>Description:</strong> {{ tour.property.description }}</p>
+        <p class="card-text"><strong>Status:</strong> {{ tour.status }}</p>
 
-    <button (click)="saveChanges()">Save Changes</button>
+        <button *ngIf="tour.status === 'Pending' && editingTourId !== tour.bookTourID" (click)="startEditTour(tour)" class="btn btn-primary btn-sm">Edit Tour</button>
+      </div>
+
+      <div *ngIf="tour.status === 'Pending' && editingTourId === tour.bookTourID" class="card-body">
+        <form (ngSubmit)="editTour(tour.bookTourID)">
+          <div class="mb-3">
+            <label for="tourDate{{tour.bookTourID}}" class="form-label">Select New Tour Date:</label>
+            <input
+              type="date"
+              class="form-control"
+              id="tourDate{{tour.bookTourID}}"
+              [(ngModel)]="selectedDate"
+              name="tourDate"
+              [min]="minDate"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="tourTime{{tour.bookTourID}}" class="form-label">Select New Tour Time:</label>
+            <select
+              class="form-control"
+              id="tourTime{{tour.bookTourID}}"
+              [(ngModel)]="selectedTime"
+              name="tourTime"
+              required
+            >
+              <option value="" disabled selected>Select a time</option>
+              <option *ngFor="let time of availableTimes" [value]="time">{{ time }}</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-success me-2">Update Tour</button>
+          <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>

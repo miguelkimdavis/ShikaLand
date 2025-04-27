@@ -42,4 +42,13 @@ export class ApiService {
   updateTour(id: number, tourData: any): Observable<any> {
     return this.http.patch(`${this.apiUrl}/book-tour/${id}`, tourData);
   }
+
+  getAllTours(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/book-tour`);
+  }
+  
+  updateTourStatus(id: number, status: 'Pending' | 'Confirmed' | 'Cancelled'): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/book-tour/${id}`, { status });
+  }
+  
 }

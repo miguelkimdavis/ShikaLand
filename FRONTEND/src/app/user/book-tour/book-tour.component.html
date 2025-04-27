@@ -1,82 +1,52 @@
-<!-- <div class="container mt-4">
-    <h2 class="mb-4">Book a Tour</h2>
-  
-    <div *ngIf="alertMessage" class="alert" [ngClass]="{
-      'alert-success': alertType === 'success',
-      'alert-danger': alertType === 'danger'
-    }">
-      {{ alertMessage }}
-    </div>
-  
-    <div *ngIf="property" class="card mb-4">
-      <img [src]="property.imageURLs" class="card-img-top" style="height: 250px; object-fit: cover;" />
-      <div class="card-body">
-        <h4 class="card-title">{{ property.location }}</h4>
-        <p class="card-text"><strong>Plot Size:</strong> {{ property.plotSize }}</p>
-        <p class="card-text"><strong>Price:</strong> KSh {{ property.price | number }}</p>
-        <p class="card-text"><strong>Description:</strong> {{ property.description }}</p>
-      </div>
-    </div>
-  
-    <form (ngSubmit)="bookTour()">
-      <div class="mb-3">
-        <label for="tourDate" class="form-label">Select Tour Date:</label>
-        <input type="date" class="form-control" id="tourDate" [(ngModel)]="selectedDate" name="tourDate" required />
-      </div>
-      <button type="submit" class="btn btn-primary">Book Tour</button>
-    </form>
-  </div>
-   -->
 
-   <div class="container mt-4">
-    <h2 class="mb-4">Book a Tour</h2>
-  
-    <div *ngIf="alertMessage" class="alert" [ngClass]="{
-      'alert-success': alertType === 'success',
-      'alert-danger': alertType === 'danger'
-    }">
-      {{ alertMessage }}
-    </div>
-  
-    <div *ngIf="property" class="card mb-4">
-      <img [src]="property.imageURLs" class="card-img-top" style="height: 250px; object-fit: cover;" />
-      <div class="card-body">
-        <h4 class="card-title">{{ property.location }}</h4>
-        <p class="card-text"><strong>Plot Size:</strong> {{ property.plotSize }}</p>
-        <p class="card-text"><strong>Price:</strong> KSh {{ property.price | number }}</p>
-        <p class="card-text"><strong>Description:</strong> {{ property.description }}</p>
-      </div>
-    </div>
-  
-    <form (ngSubmit)="bookTour()">
-      <div class="mb-3">
-        <label for="tourDate" class="form-label">Select Tour Date:</label>
-        <input
-          type="date"
-          class="form-control"
-          id="tourDate"
-          [(ngModel)]="selectedDate"
-          name="tourDate"
-          [min]="minDate"
-          required
-        />
-      </div>
-  
-      <div class="mb-3">
-        <label for="tourTime" class="form-label">Select Tour Time:</label>
-        <select
-          class="form-control"
-          id="tourTime"
-          [(ngModel)]="selectedTime"
-          name="tourTime"
-          required
-        >
-          <option value="" disabled selected>Select a time</option>
-          <option *ngFor="let time of availableTimes" [value]="time">{{ time }}</option>
-        </select>
-      </div>
-  
-      <button type="submit" class="btn btn-primary">Book Tour</button>
-    </form>
+<div class="container mt-4">
+  <h2 class="mb-4">Book a Tour</h2>
+
+  <div *ngIf="alertMessage" class="alert" [ngClass]="{
+    'alert-success': alertType === 'success',
+    'alert-danger': alertType === 'danger'
+  }">
+    {{ alertMessage }}
   </div>
-  
+
+  <div *ngIf="property" class="card mb-4">
+    <img [src]="property.imageURLs" class="card-img-top" style="height: 250px; object-fit: cover;" />
+    <div class="card-body">
+      <h4 class="card-title">{{ property.location }}</h4>
+      <p class="card-text"><strong>Plot Size:</strong> {{ property.plotSize }}</p>
+      <p class="card-text"><strong>Price:</strong> KSh {{ property.price | number }}</p>
+      <p class="card-text"><strong>Description:</strong> {{ property.description }}</p>
+    </div>
+  </div>
+
+  <form (ngSubmit)="bookTour()">
+    <div class="mb-3">
+      <label for="tourDate" class="form-label">Select Tour Date:</label>
+      <input
+        type="date"
+        class="form-control"
+        id="tourDate"
+        [(ngModel)]="selectedDate"
+        name="tourDate"
+        [min]="minDate"
+        required
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="tourTime" class="form-label">Select Tour Time:</label>
+      <select
+        class="form-control"
+        id="tourTime"
+        [(ngModel)]="selectedTime"
+        name="tourTime"
+        required
+      >
+        <option value="" disabled selected>Select a time</option>
+        <option *ngFor="let time of availableTimes" [value]="time">{{ time }}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Book Tour</button>
+  </form>
+</div>

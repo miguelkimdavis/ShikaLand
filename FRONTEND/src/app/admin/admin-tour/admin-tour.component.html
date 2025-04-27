@@ -1,1 +1,85 @@
-<p>admin-tour works!</p>
+<div class="container mt-4">
+    <h2 class="mb-4">Booked Tours</h2>
+  
+    <div *ngIf="alertMessage" class="alert" [ngClass]="{
+      'alert-success': alertType === 'success',
+      'alert-danger': alertType === 'danger'
+    }">
+      {{ alertMessage }}
+    </div>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Tour ID</th>
+          <th>Customer ID</th>
+          <th>Property ID</th>
+          <th>Tour Date</th>
+          <th>Tour Time</th>
+          <th>Status</th>
+          <th>Confirm</th>
+          <th>Cancel</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tour of tours">
+          <td>{{ tour.bookTourID }}</td>
+          <td>{{ tour.customerID }}</td>
+          <td>{{ tour.propertyID }}</td>
+          <td>{{ tour.tourDate }}</td>
+          <td>{{ tour.tourTime }}</td>
+          <td>{{ tour.status }}</td>
+  
+          <td>
+            <div *ngIf="tour.status === 'Pending'; else confirmedBadge">
+              <button class="btn btn-success btn-sm" (click)="confirmTour(tour.bookTourID)">
+                Confirm
+              </button>
+            </div>
+            <ng-template #confirmedBadge>
+              <span class="badge bg-secondary">{{ tour.status }}</span>
+            </ng-template>
+          </td>
+
+          <td>
+            <div *ngIf="tour.status === 'Pending'; else cancelledBadge">
+              <button class="btn btn-danger btn-sm" (click)="cancelTour(tour.bookTourID)">
+                Cancel
+              </button>
+            </div>
+            <ng-template #cancelledBadge>
+              <span class="badge bg-secondary">{{ tour.status }}</span>
+            </ng-template>
+          </td>
+  
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+  <div class="container mt-5">
+    <h2 class="mb-4">Tour Schedule</h2>
+  
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Tour ID</th>
+          <th>Customer ID</th>
+          <th>Property ID</th>
+          <th>Tour Date</th>
+          <th>Tour Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tour of confirmedTours">
+          <td>{{ tour.bookTourID }}</td>
+          <td>{{ tour.customerID }}</td>
+          <td>{{ tour.propertyID }}</td>
+          <td>{{ tour.tourDate }}</td>
+          <td>{{ tour.tourTime }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  

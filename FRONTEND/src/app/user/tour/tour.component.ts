@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../shared/api/api.service';
@@ -15,61 +15,116 @@ import { AuthService } from '../../auth/auth.service';
   templateUrl: './tour.component.html',
   styleUrl: './tour.component.css'
 })
-export class TourComponent {
-  tours: any[] = [];
-  selectedTour: any = null;
+export class TourComponent implements OnInit {
+  tours: any[] = []; 
   selectedDate!: string;
   selectedTime!: string;
-  minDate: string = ''; 
-  timeMin: string = '09:00'; 
-  timeMax: string = '17:00'; 
+  alertMessage: string = '';
+  alertType: 'success' | 'danger' = 'success';
+  minDate!: string;
+  availableTimes: string[] = [];
+  editingTourId: number | null = null; 
 
-  constructor(private apiService: ApiService, private authService: AuthService, private router: Router) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit(): void {
-    const customerID = 1; // Fetch this from local storage or JWT token
-    this.loadTours(customerID);
-
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1); 
-    this.minDate = tomorrow.toISOString().split('T')[0]; 
+    this.getTourDetails();
+    this.setMinDate();
+    this.generateAvailableTimes();
   }
 
-  loadTours(customerID: number) {
-    this.apiService.getToursByCustomer(customerID).subscribe({
-      next: (tours) => {
-        this.tours = tours;
-      },
-      error: (err) => {
-        console.error('Error fetching tours', err);
+  getTourDetails() {
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      const customerID = Number(localStorage.getItem('user_id'));
+
+      if (!customerID) {
+        this.alertType = 'danger';
+        this.alertMessage = 'You must be logged in to view your tours.';
+        return;
       }
-    });
+
+      this.apiService.getToursByCustomer(customerID).subscribe({
+        next: (res) => {
+          this.tours = res; 
+        },
+        error: (err) => {
+          console.error(err);
+          this.alertType = 'danger';
+          this.alertMessage = 'Failed to load your tour details.';
+        }
+      });
+    } else {
+      this.alertType = 'danger';
+      this.alertMessage = 'localStorage is not available in this environment.';
+    }
   }
 
-  editTour(tour: any) {
-    this.selectedTour = tour;
+  setMinDate() {
+    const today = new Date();
+    today.setDate(today.getDate() + 1);
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    this.minDate = `${year}-${month}-${day}`;
+  }
+
+  generateAvailableTimes() {
+    const times = [];
+    for (let hour = 9; hour <= 17; hour++) {
+      const timeString = `${hour.toString().padStart(2, '0')}:00`;
+      times.push(timeString);
+    }
+    this.availableTimes = times;
+  }
+
+  startEditTour(tour: any) {
+    this.editingTourId = tour.bookTourID;
     this.selectedDate = tour.tourDate;
     this.selectedTime = tour.tourTime;
   }
 
-  saveChanges() {
+  cancelEdit() {
+    this.editingTourId = null;
+    this.selectedDate = '';
+    this.selectedTime = '';
+  }
+
+  editTour(tourId: number) {
     if (!this.selectedDate || !this.selectedTime) {
-      alert('Please select a date and time');
+      this.alertType = 'danger';
+      this.alertMessage = 'Please select both date and time to update the tour.';
       return;
     }
 
-    const updatedTour = {
+    const selected = new Date(this.selectedDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (selected <= today) {
+      this.alertType = 'danger';
+      this.alertMessage = 'Please select a date starting from tomorrow.';
+      return;
+    }
+
+    const tourData = {
       tourDate: this.selectedDate,
       tourTime: this.selectedTime,
+      status: 'Pending'
     };
 
-    this.apiService.updateTour(this.selectedTour.bookTourID, updatedTour).subscribe({
+    this.apiService.updateTour(tourId, tourData).subscribe({
       next: (res) => {
-        alert('Tour updated successfully');
-        this.loadTours(1); 
+        this.alertType = 'success';
+        this.alertMessage = 'Tour updated successfully!';
+        this.editingTourId = null;
+        setTimeout(() => {
+          this.getTourDetails(); 
+        }, 2000);
       },
       error: (err) => {
-        console.error('Error updating tour', err);
+        console.error(err);
+        this.alertType = 'danger';
+        this.alertMessage = 'Failed to update tour.';
       }
     });
   }

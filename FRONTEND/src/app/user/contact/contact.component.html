@@ -1,1 +1,58 @@
-<p>contact works!</p>
+<div class="container my-5">
+    <h2 class="text-center animated fadeIn">Contact Us</h2>
+    
+    <!-- Notification Alert (Will show when form is submitted) -->
+    <div *ngIf="alertMessage" class="alert" [ngClass]="alertClass" role="alert">
+      {{ alertMessage }}
+    </div>
+  
+    <!-- Contact Information Section -->
+    <div class="contact-info animated fadeIn">
+      <h3>Company Information:</h3>
+      <ul class="list-unstyled">
+        <li>
+          <a href="https://www.instagram.com/shikalandproperties/" target="_blank">
+            <i class="fab fa-instagram"></i> Instagram
+          </a>
+        </li>
+        <li>
+          <a href="https://www.tiktok.com/@shika.land" target="_blank">
+            <i class="fab fa-tiktok"></i> TikTok
+          </a>
+        </li>
+        <li>
+          <a href="https://web.facebook.com/people/Shika-Land/61560332667500/#" target="_blank">
+            <i class="fab fa-facebook"></i> Facebook
+          </a>
+        </li>
+        <li>
+          <a href="https://wa.me/254722822655" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </li>
+        <li><i class="fas fa-phone"></i> Phone: +254722822655</li>
+        <li><i class="fas fa-map-marker-alt"></i> Address: Ruiru</li>
+      </ul>
+    </div>
+  
+    <!-- Inquiry Form Section -->
+    <div class="inquiry-form animated fadeInUp">
+      <h3>Submit Your Inquiry</h3>
+      <form #inquiryForm="ngForm" (ngSubmit)="onSubmit(inquiryForm)">
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="name" ngModel required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="email" ngModel required>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Your Inquiry</label>
+          <textarea class="form-control" id="message" ngModel rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!inquiryForm.valid">Send Inquiry</button>
+      </form>
+    </div>
+  </div>
+  

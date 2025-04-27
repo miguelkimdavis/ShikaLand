@@ -16,11 +16,13 @@ export class BookTourService {
     const bookTour = this.bookTourRepository.create(createBookTourDto);
     return await this.bookTourRepository.save(bookTour);
   }
-
+  
   async findAll(): Promise<BookTour[]> {
-    return await this.bookTourRepository.find();
+    return await this.bookTourRepository.find({
+      relations: ['property'],
+    });
   }
-
+  
   async findOne(id: number): Promise<BookTour> {
     const bookTour = await this.bookTourRepository.findOneBy({ bookTourID: id });
 
@@ -43,19 +45,17 @@ export class BookTourService {
       where: { bookTourID },
       relations: ['property'], 
     });
-
+  
     if (!bookTour) {
       throw new NotFoundException(`Tour with ID ${bookTourID} not found`);
     }
-
+  
+    if (bookTour.status !== 'Pending') {
+      throw new Error('Cannot update a confirmed or cancelled tour.');
+    }
+  
     Object.assign(bookTour, updateBookTourDto);
     return this.bookTourRepository.save(bookTour);
-  }
-  async update(id: number, updateBookTourDto: UpdateBookTourDto): Promise<BookTour> {
-    const bookTour = await this.findOne(id);
-
-    const updated = Object.assign(bookTour, updateBookTourDto);
-    return await this.bookTourRepository.save(updated);
   }
 
   async remove(id: number): Promise<void> {
@@ -63,4 +63,5 @@ export class BookTourService {
 
     await this.bookTourRepository.remove(bookTour);
   }
+
 }
