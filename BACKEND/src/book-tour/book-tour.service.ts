@@ -64,4 +64,15 @@ export class BookTourService {
     await this.bookTourRepository.remove(bookTour);
   }
 
+  async getTourStatusCounts() {
+    const [confirmed, cancelled, pending] = await Promise.all([
+      this.bookTourRepository.count({ where: { status: 'Confirmed' } }),
+      this.bookTourRepository.count({ where: { status: 'Cancelled' } }),
+      this.bookTourRepository.count({ where: { status: 'Pending' } }),
+    ]);
+  
+    return { confirmedTours: confirmed, cancelledTours: cancelled, pendingTours: pending };
+  }
+  
+
 }

@@ -1,0 +1,47 @@
+/* Make table fill container nicely */
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Responsive handling */
+  @media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+  
+    thead {
+      display: none; /* Hide table headers on mobile */
+    }
+  
+    tr {
+      margin-bottom: 1rem;
+      background: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 0.5rem;
+      padding: 1rem;
+    }
+  
+    td {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border: none;
+      border-bottom: 1px solid #eee;
+      font-size: 0.95rem;
+    }
+  
+    td::before {
+      content: attr(data-label);
+      font-weight: bold;
+      flex-basis: 40%;
+      text-align: left;
+      color: #555;
+    }
+  
+    td:last-child {
+      border-bottom: none;
+    }
+  }
+  

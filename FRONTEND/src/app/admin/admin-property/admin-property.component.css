@@ -1,6 +1,3 @@
-/* admin-property.component.css */
-
-/* Container and header */
 .container {
   background-color: #ffffff;
   padding: 2.5rem;
@@ -17,7 +14,6 @@ h2 {
   animation: slideInDown 0.5s ease-in;
 }
 
-/* Form group spacing and styling */
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -45,7 +41,6 @@ textarea.form-control:focus {
   box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
 }
 
-/* Buttons */
 .btn {
   border-radius: 10px;
   padding: 0.6rem 1.4rem;
@@ -73,7 +68,6 @@ textarea.form-control:focus {
   transform: scale(1.05);
 }
 
-/* Table styling */
 .table thead {
   background-color: #f8f9fa;
   font-weight: 600;
@@ -114,29 +108,29 @@ textarea.form-control:focus {
   transform: scale(1.1);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
-  .form-group {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .col-md-6 {
+    width: 100%;
     margin-bottom: 1rem;
   }
 
   h2 {
     font-size: 1.5rem;
   }
+}
 
-  .btn {
-    width: 100%;
-    margin-bottom: 0.5rem;
+@media (max-width: 576px) {
+  .table-responsive {
+    overflow-x: auto;
   }
-}
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideInDown {
-  from { transform: translateY(-20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  .table {
+    width: 100%;
+    display: block;
+    white-space: nowrap;
+  }
 }

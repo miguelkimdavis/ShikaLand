@@ -1,97 +1,123 @@
+/* Container styling */
 .auth-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
-    background: linear-gradient(135deg, #f4f4f4, #e8f0fe);
-    animation: fadeIn 1s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background: linear-gradient(135deg, #f4f4f4, #e8f0fe);
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Form styling */
+.auth-form {
+  background: #fff;
+  padding: 2rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  animation: slideUp 0.7s ease;
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.auth-form input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+/* Specific for password input to make space for the eye icon */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 45px; /* Make space for the eye */
+}
+
+/* Eye Icon Styling */
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #aaa;
+  transition: color 0.3s ease;
+  font-size: 18px;
+}
+
+.toggle-password:hover {
+  color: #4a90e2;
+}
+
+.auth-form input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px #4a90e2;
+  outline: none;
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 12px;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.auth-form button:hover {
+  background: #357abd;
+}
+
+.switch-text {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.switch-text a {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.switch-text a:hover {
+  color: #357abd;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
   }
-  
-  .auth-form {
-    background: #fff;
-    padding: 2rem 3rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    animation: slideUp 0.7s ease;
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-  
-  .auth-form h2 {
-    text-align: center;
-    margin-bottom: 1rem;
-    color: #333;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
   }
-  
-  .auth-form input {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    margin: 12px 0;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    transition: all 0.3s ease;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .auth-form input:focus {
-    border-color: #4a90e2;
-    box-shadow: 0 0 5px #4a90e2;
-    outline: none;
-  }
-  
-  .auth-form button {
-    width: 100%;
-    padding: 12px;
-    background: #4a90e2;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .auth-form button:hover {
-    background: #357abd;
-  }
-  
-  .switch-text {
-    text-align: center;
-    margin-top: 15px;
-  }
-  
-  .switch-text a {
-    color: #4a90e2;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    cursor: pointer;
-  }
-  
-  .switch-text a:hover {
-    color: #357abd;
-  }
-  
-  /* Animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: scale(0.97);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
+}

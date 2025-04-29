@@ -72,7 +72,29 @@
     color: #357abd;
   }
   
-  /* Animations */
+  .password-wrapper {
+    position: relative;
+  }
+  
+  .password-wrapper input {
+    padding-right: 40px; 
+  }
+  
+  .toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #aaa;
+    font-size: 18px;
+    transition: color 0.3s ease;
+  }
+  
+  .toggle-password:hover {
+    color: #4a90e2;
+  }
+  
   @keyframes fadeIn {
     from {
       opacity: 0;

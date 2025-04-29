@@ -20,6 +20,4 @@ export class Customer {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   registrationDate: Date;
 
-  @Column({ type: 'decimal', default: 0.00 })
-  balance: number;
 }

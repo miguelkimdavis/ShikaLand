@@ -25,6 +25,7 @@ import {
     @IsNotEmpty()
     @IsEnum(['Available', 'Sold'])
     status: 'Available' | 'Sold' ;
+    
   
     @IsNotEmpty()
     @IsString()

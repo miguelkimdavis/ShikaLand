@@ -16,6 +16,12 @@ export class BookTourController {
     return this.bookTourService.findAll();
   }
 
+  @Get('dashboard-stats')
+  getTourStatusCounts() {
+    return this.bookTourService.getTourStatusCounts();
+  }
+
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.bookTourService.findOne(+id);

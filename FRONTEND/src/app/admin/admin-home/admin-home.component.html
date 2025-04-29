@@ -1,1 +1,47 @@
-<p>admin-home works!</p>
+<div class="container my-5">
+  <h2 class="text-center mb-4">Admin Dashboard</h2>
+
+  <div class="row g-4">
+
+    <div class="col-md-6 col-lg-4">
+      <div class="dashboard-card">
+        <h5>Total Properties</h5>
+        <p class="dashboard-value">{{ totalProperties }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+      <div class="dashboard-card">
+        <h5>Tour Booking Status</h5>
+        <div *ngIf="isBrowser">
+          <canvas baseChart
+                  [data]="tourChartData"
+                  [options]="tourChartOptions"
+                  [type]="'pie'">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+      <div class="dashboard-card">
+        <h5>Registered Users</h5>
+        <p class="dashboard-value">{{ totalUsers }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="dashboard-card">
+        <h5>Property Status</h5>
+        <div *ngIf="isBrowser">
+          <canvas baseChart
+                  [data]="propertyChartData"
+                  [options]="propertyChartOptions"
+                  [type]="'bar'">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+</div>

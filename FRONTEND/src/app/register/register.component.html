@@ -9,9 +9,34 @@
     <input formControlName="fullName" placeholder="Full Name" class="form-control mb-2" />
     <input formControlName="phoneNumber" placeholder="Phone Number" class="form-control mb-2" />
     <input formControlName="email" placeholder="Email" type="email" class="form-control mb-2" />
-    <input formControlName="password" placeholder="Password" type="password" class="form-control mb-2" />
-    <input formControlName="confirmPassword" placeholder="Confirm Password" type="password" class="form-control mb-2" />
-    <button type="submit" class="btn btn-primary w-100">Register</button>
+
+    <div class="password-wrapper">
+      <input
+        formControlName="password"
+        [type]="passwordVisible ? 'text' : 'password'"
+        placeholder="Password"
+        class="form-control"
+      />
+      <i
+        class="fa-solid fa-eye toggle-password"
+        (click)="togglePasswordVisibility('password')">
+      </i>
+    </div>
+
+    <div class="password-wrapper">
+      <input
+        formControlName="confirmPassword"
+        [type]="confirmPasswordVisible ? 'text' : 'password'"
+        placeholder="Confirm Password"
+        class="form-control"
+      />
+      <i
+        class="fa-solid fa-eye toggle-password"
+        (click)="togglePasswordVisibility('confirmPassword')">
+      </i>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
 
     <p class="switch-text mt-3">
       Already have an account?

@@ -50,5 +50,24 @@ export class ApiService {
   updateTourStatus(id: number, status: 'Pending' | 'Confirmed' | 'Cancelled'): Observable<any> {
     return this.http.patch(`${this.apiUrl}/book-tour/${id}`, { status });
   }
+
+  sendInquiry(inquiry: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/inquiry`, inquiry);
+  }
+
+  getAllInquiries(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/inquiry`);
+  }
   
+  getPropertyDashboardStats(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/properties/dashboard-stats`);
+  }
+
+  getTourDashboardStats(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/book-tour/dashboard-stats`);
+  }
+  
+  getCustomerCount(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/auth/customer-count`);
+  }
 }

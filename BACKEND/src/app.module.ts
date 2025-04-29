@@ -10,7 +10,8 @@ import { Staff } from './auth/entity/staff.entity';
 import { Customer } from './auth/entity/customer.entity';
 import { BookTourModule } from './book-tour/book-tour.module';
 import { BookTour } from './book-tour/entity/book-tour.entity';
-
+import { InquiryModule } from './inquiry/inquiry.module';
+import { Inquiry } from './inquiry/entity/inquiry.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -29,11 +30,13 @@ import { BookTour } from './book-tour/entity/book-tour.entity';
         Customer,
         Staff,
         BookTour,
+        Inquiry
       ],
     }),
     PropertyModule,
     AuthModule,
     BookTourModule,
+    InquiryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

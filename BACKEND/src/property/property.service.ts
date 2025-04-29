@@ -33,4 +33,13 @@ export class PropertyService {
   async remove(id: number): Promise<void> {
     await this.propertyRepository.delete(id);
   }
+
+  async countAll(): Promise<number> {
+    return await this.propertyRepository.count();
+  }
+
+  async countByStatus(status: 'Available' | 'Sold'): Promise<number> {
+    return await this.propertyRepository.count({ where: { status } });
+  }
+  
 }

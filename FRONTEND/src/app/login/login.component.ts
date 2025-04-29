@@ -17,12 +17,17 @@ export class LoginComponent {
   loginForm: FormGroup;
   alertMessage: string = '';
   alertType: 'success' | 'danger' | '' = '';
+  passwordVisible: boolean = false;  
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
       email: [''],
       password: ['']
     });
+  }
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
 
   onSubmit() {

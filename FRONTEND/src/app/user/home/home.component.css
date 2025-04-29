@@ -1,3 +1,8 @@
+.container {
+    margin-top: 20px;
+    padding: 10px;
+}
+
 img {
     width: 350px;
     height: 500px;
@@ -16,3 +21,36 @@ img:hover {
 h2{
     text-align: center;
 }
+
+
+.faq-section {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+  }
+  
+  .faq-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    font-size: 2rem;
+  }
+  
+  .accordion-button {
+    background-color: #ffffff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #3498db;
+  }
+  
+  .accordion-button::after {
+    background-image: url('data:image/svg+xml;charset=UTF8,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="%233498db" viewBox="0 0 16 16"%3E%3Cpath fill-rule="evenodd" d="M1.646 8.646a.5.5 0 0 1 .708 0L8 14.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/%3E%3C/svg%3E');
+    transform: rotate(0deg);
+  }
+  
+  .accordion-button:not(.collapsed)::after {
+    background-image: url('data:image/svg+xml;charset=UTF8,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="%233498db" viewBox="0 0 16 16"%3E%3Cpath fill-rule="evenodd" d="M8 1.646l6 6a.5.5 0 0 1-.708.708L8 2.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6a.5.5 0 0 1 .708 0z"/%3E%3C/svg%3E');
+    transform: rotate(180deg);
+  }
+  

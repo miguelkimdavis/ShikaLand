@@ -1,12 +1,9 @@
 <div class="container my-5">
     <h2 class="text-center animated fadeIn">Contact Us</h2>
-    
-    <!-- Notification Alert (Will show when form is submitted) -->
     <div *ngIf="alertMessage" class="alert" [ngClass]="alertClass" role="alert">
       {{ alertMessage }}
     </div>
-  
-    <!-- Contact Information Section -->
+
     <div class="contact-info animated fadeIn">
       <h3>Company Information:</h3>
       <ul class="list-unstyled">
@@ -34,25 +31,28 @@
         <li><i class="fas fa-map-marker-alt"></i> Address: Ruiru</li>
       </ul>
     </div>
-  
-    <!-- Inquiry Form Section -->
+
     <div class="inquiry-form animated fadeInUp">
       <h3>Submit Your Inquiry</h3>
       <form #inquiryForm="ngForm" (ngSubmit)="onSubmit(inquiryForm)">
         <div class="mb-3">
           <label for="name" class="form-label">Full Name</label>
-          <input type="text" class="form-control" id="name" ngModel required>
+          <input type="text" class="form-control" id="name" name="name" [(ngModel)]="inquiry.name" required>
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email Address</label>
-          <input type="email" class="form-control" id="email" ngModel required>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="inquiry.email" required>
+        </div>
+        <div class="mb-3">
+          <label for="phoneNumber" class="form-label">Phone Number</label>
+          <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" [(ngModel)]="inquiry.phoneNumber" required>
         </div>
         <div class="mb-3">
           <label for="message" class="form-label">Your Inquiry</label>
-          <textarea class="form-control" id="message" ngModel rows="4" required></textarea>
+          <textarea class="form-control" id="message" name="message" [(ngModel)]="inquiry.message" rows="4" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary" [disabled]="!inquiryForm.valid">Send Inquiry</button>
-      </form>
+      </form>     
     </div>
   </div>
   

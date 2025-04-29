@@ -1,6 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { ApiService } from '../../shared/api/api.service';
 
 @Component({
   selector: 'app-contact',
@@ -17,29 +18,31 @@ export class ContactComponent {
   inquiry = {
     name: '',
     email: '',
+    phoneNumber: '',
     message: ''
   };
 
-  // Variables for Alert message and styling
   alertMessage: string = '';
   alertClass: string = '';
 
-  // Form submission handler
+  constructor(private apiService: ApiService) {}
+
   onSubmit(form: NgForm) { 
     if (form.valid) {
-      // For now, we just log the data to the console
-      console.log('Form Submitted:', this.inquiry);
-
-      // Reset the form after submission
-      form.reset();
-
-      // Set success alert message and class
-      this.alertMessage = 'Your inquiry has been submitted successfully!';
-      this.alertClass = 'alert-success'; // Green color for success
+      this.apiService.sendInquiry(this.inquiry).subscribe({
+        next: () => {
+          form.reset();
+          this.alertMessage = 'Your inquiry has been submitted successfully!';
+          this.alertClass = 'alert-success';
+        },
+        error: () => {
+          this.alertMessage = 'Failed to submit your inquiry. Please try again!';
+          this.alertClass = 'alert-danger';
+        }
+      });
     } else {
-      // Set failure alert message and class
       this.alertMessage = 'Please fill out all required fields!';
-      this.alertClass = 'alert-danger'; // Red color for failure
+      this.alertClass = 'alert-danger'; 
     }
   }
 }

@@ -18,6 +18,9 @@ export class RegisterComponent {
   alertMessage: string = '';
   alertType: 'success' | 'danger' | '' = '';
 
+  passwordVisible: boolean = false;
+  confirmPasswordVisible: boolean = false;
+
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerForm = this.fb.group({
       fullName: [''],
@@ -26,6 +29,14 @@ export class RegisterComponent {
       password: [''],
       confirmPassword: ['']
     });
+  }
+
+  togglePasswordVisibility(field: 'password' | 'confirmPassword') {
+    if (field === 'password') {
+      this.passwordVisible = !this.passwordVisible;
+    } else {
+      this.confirmPasswordVisible = !this.confirmPasswordVisible;
+    }
   }
 
   onSubmit() {
@@ -50,5 +61,5 @@ export class RegisterComponent {
         this.registerForm.reset();
       }
     });
-  }
+  }  
 }

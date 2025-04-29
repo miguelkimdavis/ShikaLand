@@ -12,7 +12,7 @@ const routes: Routes = [
     path: '',
     component: AdminLayoutComponent,
     children: [
-      { path: '', component: AdminHomeComponent },
+      { path: 'home', component: AdminHomeComponent },
       { path: 'property', component: AdminPropertyComponent },
       { path: 'tour', component: AdminTourComponent },
       { path: 'finance', component: AdminfinanceComponent },

@@ -24,10 +24,10 @@ import {
   
     @Column({
       type: 'enum',
-      enum: ['Available', 'Pending', 'Sold', 'Inactive'],
+      enum: ['Available', 'Sold'],
       default: 'Available',
     })
-    status: 'Available' | 'Pending' | 'Sold' | 'Inactive';
+    status: 'Available' | 'Sold';
   
     @CreateDateColumn()
     listingDate: Date;

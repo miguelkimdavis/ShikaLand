@@ -53,6 +53,11 @@ export class AuthService {
     return this.customerRepo.save(newUser);
   }
   
+  async getCustomerCount() {
+    const count = await this.customerRepo.count();
+    return { totalCustomers: count };
+  }
+  
   async registerStaff(dto: RegisterStaffDto) {
     const { staffName, phoneNumber, email, password, confirmPassword, role } = dto;
   
