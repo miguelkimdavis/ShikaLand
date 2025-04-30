@@ -5,7 +5,6 @@ import { AdminPropertyComponent } from './admin-property/admin-property.componen
 import { AdminTourComponent } from './admin-tour/admin-tour.component';
 import { AdminContactComponent } from './admin-contact/admin-contact.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
-import { AdminfinanceComponent } from './adminfinance/adminfinance.component';
 
 const routes: Routes = [
   {
@@ -15,7 +14,6 @@ const routes: Routes = [
       { path: 'home', component: AdminHomeComponent },
       { path: 'property', component: AdminPropertyComponent },
       { path: 'tour', component: AdminTourComponent },
-      { path: 'finance', component: AdminfinanceComponent },
       { path: 'contact', component: AdminContactComponent }
     ]
   }

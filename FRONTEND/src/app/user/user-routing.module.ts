@@ -5,7 +5,6 @@ import { PropertyComponent } from './property/property.component';
 import { ContactComponent } from './contact/contact.component';
 import { UserLayoutComponent } from './user-layout/user-layout.component';
 import { BookTourComponent } from './book-tour/book-tour.component';
-import { PaymentComponent } from './payment/payment.component';
 import { TourComponent } from './tour/tour.component';
 
 const routes: Routes = [
@@ -18,7 +17,6 @@ const routes: Routes = [
       { path: 'contact', component: ContactComponent },
       { path: 'book-tour/:id', component: BookTourComponent },
       { path: 'tour', component:TourComponent},
-      { path: 'payment', component: PaymentComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ]
   }
