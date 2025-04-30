@@ -113,7 +113,6 @@ export class AdminPropertyComponent implements OnInit {
     this.propertyForm.reset({
       status: 'Available'
     });
-    this.editMode = false;
-    // this.currentPropertyId = null;
+    this.editMode = false
   }
 }
